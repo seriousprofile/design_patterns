@@ -1,6 +1,6 @@
 public interface Shape {
     double area();
-} //define a common attribute for all classes to use. 
+} //define a common behavior for all classes to implement. 
 
 public class Circle implements Shape {
     private double radius; 
@@ -33,13 +33,13 @@ public class Rectangle implements Shape {
 //this is used so that the user doesnt have to see the entire working of creating an object and can just do so by simply using the factory class to produce objects. 
 //this uses the OOPs principle of encapsulation.
 public class ShapeFactory {
-    public static Shape createShape(String shapeType, double... params){
+    public static Shape createShape(String shapeType, double... params){ //double... params uses varargs to allow flexible parameter passing.
         switch(shapeType.toLowerCase()){
             case "circle":
                 return new Circle(params[0]);
             case "rectangle":
                 return new Rectangle(params[0], params[1]);
-            default: 
+            default:  //good practice to always include error handling in your code!
                 throw new IllegalArgumentException("Unknown shape type. Sorry!");
         }
     }
